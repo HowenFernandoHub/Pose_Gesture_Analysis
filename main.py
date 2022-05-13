@@ -1,3 +1,8 @@
+# Authors: Howen Anthony Fernando, Jessica Vogt, Cody Crawford
+# RedIDs: 822914112, 823660429, 824167663
+# Class: CS549, Spring 2022
+# Assignment: Pose Gesture Analysis
+
 import proj
 from proj import np
 import sys
