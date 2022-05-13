@@ -1,0 +1,11 @@
+# python dir
+/__pycache__
+
+# vscode dir
+.vscode
+
+# virtual env
+/ml_venv
+
+# video files
+*.mp4
