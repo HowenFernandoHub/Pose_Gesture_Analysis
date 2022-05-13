@@ -6,7 +6,6 @@
 import proj
 from proj import np
 import sys
-from matplotlib import pyplot as plt
 import cv2
 import mediapipe as mp
 import plotly.express as px
@@ -15,11 +14,11 @@ from sklearn.mixture import GaussianMixture
 import pandas as pd
 
 
-def showImage(img, figsize=(10, 10)):
-    """Shows output PIL image."""
-    plt.figure(figsize=figsize)
-    plt.imshow(img)
-    plt.show()
+"""
+Extracts pose data using the mediapipe pose library.
+Then uses the pose_embedder model to convert the pose data
+into embedding vectors.
+"""
 
 
 def extract_and_embed_poses(pose_embedder, filename, embeddings):
@@ -55,6 +54,12 @@ def extract_and_embed_poses(pose_embedder, filename, embeddings):
     cap.release()
 
 
+"""
+Takes in the embeddings dataframe and a boolean for the cluster mode.
+Uses plotly to visualize the data.
+"""
+
+
 def visualize_data(df_emb, cluster_mode):
     features = df_emb.drop("videoname", axis=1)
 
@@ -85,6 +90,13 @@ def visualize_data(df_emb, cluster_mode):
     fig.show()
 
 
+"""
+Creates clusters for the dataframe using Gaussian Mixture
+clustering. Adds the cluster info as a column to the dataframe.
+Returns the altered dataframe.
+"""
+
+
 def gaussian_mix(df_emb):
     gaussMix = GaussianMixture(n_components=3)
     df_emb_numeric = df_emb.drop("videoname", axis=1)
@@ -92,6 +104,14 @@ def gaussian_mix(df_emb):
     cluster = gaussMix.predict(df_emb_numeric)
     df_emb["cluster"] = cluster
     return df_emb
+
+
+"""
+Convert embedding numpy array into a dataframe.
+Gives the dataframe column names based on an index
+and the last column name as videoname.
+Returns the dataframe.
+"""
 
 
 def embeddings2Df(embeddings):

@@ -5,7 +5,6 @@ The goal of this project is to take in video data, extract pose information from
 * numpy
 * pandas
 * scikit learn
-* matplotlib
 * cv2
 * mediapipe
 * plotly
